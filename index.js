@@ -13,13 +13,13 @@ router.get('/wopi/files/:name', (ctx, next) => {
     const name = ctx.params.name
     const p = path.resolve('./office', name)
     const stat = fs.statSync(p)
-    const file = fs.readFileSync(p, 'utf8')
+    // const file = fs.readFileSync(p, 'utf8')
     console.log(Date.now(), '返回文件信息', name)
     ctx.body = {
       BaseFileName: name,
       OwnerId: 'admin',
       Size: stat.size,
-      SHA256: crypto.createHash('sha256').update(file).digest('base64'), // Hash.sha256().update(file).digest('base64'),
+      // SHA256: crypto.createHash('sha256').update(file).digest('base64'), // Hash.sha256().update(file).digest('base64'),
       Version: Date.now(),
     }
     ctx.response.set('Content-Type', 'application/json')
