@@ -28,7 +28,10 @@ router.post('/wopi/files/:name/contents', (ctx, next) => {
   const p = path.resolve('./office', name)
   const s = fs.createReadStream(p)
   console.log('返回文件流', name)
+  const stat = fs.statSync(p)
   ctx.response.set("Content-type", "application/octet-stream")
+  ctx.response.set('Content-Length', stat.size)
+  ctx.response.set('Content-Disposition', `attachment;filename=${name}`)
   ctx.body = s
 })
 
