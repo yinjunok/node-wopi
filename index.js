@@ -28,7 +28,7 @@ router.get('/wopi/files/:name', (ctx, next) => {
   }
 })
 
-router.post('/wopi/files/:name/contents', (ctx, next) => {
+router.get('/wopi/files/:name/contents', (ctx, next) => {
   try {
     const name = ctx.params.name
     const p = path.resolve('./office', name)
