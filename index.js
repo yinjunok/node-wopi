@@ -7,7 +7,7 @@ const Router = require('@koa/router')
 const app = new Koa()
 const router = new Router()
 
-router.get('/files/:name', (ctx, next) => {
+router.get('/wopi/files/:name', (ctx, next) => {
   const name = ctx.params.name
   const p = path.resolve('./office', name)
   const stat = fs.statSync(p)
@@ -23,7 +23,7 @@ router.get('/files/:name', (ctx, next) => {
   ctx.response.set('Content-Type', 'application/json')
 })
 
-router.post('/files/:name/contents', (ctx, next) => {
+router.post('/wopi/files/:name/contents', (ctx, next) => {
   const name = ctx.params.name
   const p = path.resolve('./office', name)
   const s = fs.createReadStream(p)
