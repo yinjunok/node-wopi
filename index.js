@@ -12,6 +12,7 @@ router.get('/files/:name', (ctx, next) => {
   const p = path.resolve('./office', name)
   const stat = fs.statSync(p)
   const file = fs.readFileSync(p, 'utf8')
+  console.log('返回文件信息', name)
   ctx.body = {
     BaseFileName: name,
     OwnerId: 'admin',
@@ -26,6 +27,7 @@ router.post('/files/:name/contents', (ctx, next) => {
   const name = ctx.params.name
   const p = path.resolve('./office', name)
   const s = fs.createReadStream(p)
+  console.log('返回文件流', name)
   ctx.response.set("Content-type", "application/octet-stream")
   ctx.body = s
 })
